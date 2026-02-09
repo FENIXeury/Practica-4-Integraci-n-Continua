@@ -1,0 +1,18 @@
+name: Notificación al subir a la rama main
+
+on:
+  push:
+    branches:
+      - main  # Se activará cada vez que se haga un push en la rama main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Send notification to ntfy.sh
+      run: |
+        curl -X POST -d "Nuevo código subido a la rama main" https://ntfy.sh/devops-itla
